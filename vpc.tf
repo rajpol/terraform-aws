@@ -16,27 +16,27 @@ resource "aws_internet_gateway" "terraform-internet-gateway" {
     }
 }
 
-resource "aws_subnet" "public_subnet1_dev" {
+resource "aws_subnet" "public_subnet1" {
     vpc_id = aws_vpc.terraform-vpc.id
-    cidr_block = var.public_subnet1_dev_cidr
+    cidr_block = var.public_subnet1_cidr
     availability_zone = "us-east-1a"
 
     tags = {
-        Name = "${var.public_subnet1_dev_name}"
+        Name = "${var.public_subnet1_name}"
     }
 }
 
-resource "aws_subnet" "public_subnet2_dev" {
+resource "aws_subnet" "public_subnet2" {
     vpc_id = aws_vpc.terraform-vpc.id
-    cidr_block = var.public_subnet2_dev_cidr
+    cidr_block = var.public_subnet2_cidr
     availability_zone = "us-east-1b"
 
     tags = {
-        Name = var.public_subnet2_dev_name
+        Name = var.public_subnet2_name
     }
 }
 
-resource "aws_route_table" "public_routetable_dev" {
+resource "aws_route_table" "public_routetable" {
     vpc_id = aws_vpc.terraform-vpc.id
 
     route {
@@ -50,8 +50,8 @@ resource "aws_route_table" "public_routetable_dev" {
 }
 
 resource "aws_route_table_association" "terraform-public" {
-    subnet_id = aws_subnet.public_subnet1_dev.id
-    route_table_id = aws_route_table.public_routetable_dev.id
+    subnet_id = aws_subnet.public_subnet1.id
+    route_table_id = aws_route_table.public_routetable.id
 }
 
 resource "aws_security_group" "public_security_group1" {

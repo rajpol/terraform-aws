@@ -4,10 +4,10 @@ variable "aws_region" {}
 variable "vpc_cidr" {}
 variable "vpc_name" {}
 variable "igw_name" {}
-variable "public_subnet1_dev_cidr" {}
-variable "public_subnet2_dev_cidr" {}
-variable "public_subnet1_dev_name" {}
-variable "public_subnet2_dev_name" {}
+variable "public_subnet1_cidr" {}
+variable "public_subnet2_cidr" {}
+variable "public_subnet1_name" {}
+variable "public_subnet2_name" {}
 variable "main-route-table" {}
 variable "public_security_group1" {}
 variable "keypair" {}
