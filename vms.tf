@@ -1,7 +1,7 @@
 resource "aws_instance" "project-iac" {
   ami = lookup(var.awsprops, "ami")
   instance_type = lookup(var.awsprops, "itype")
-  subnet_id = aws_subnet.public_subnet1_dev.id
+  subnet_id = aws_subnet.public_subnet1.id
   associate_public_ip_address = lookup(var.awsprops, "publicip")
   key_name = lookup(var.awsprops, "keyname")
 

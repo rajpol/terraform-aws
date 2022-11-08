@@ -5,7 +5,6 @@ resource "aws_vpc" "terraform-vpc" {
     tags = {
         Name = "terraform-aws"
         Owner = "Rajasekhar Polavarapu"
-        environment = "Dev"
     }
 }
 
