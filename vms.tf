@@ -1,8 +1,10 @@
 resource "aws_instance" "project-iac" {
+  count = 3
   ami = lookup(var.awsprops, "ami")
   instance_type = lookup(var.awsprops, "itype")
-  subnet_id = aws_subnet.public_subnet1.id
+  subnet_id = "${aws_subnet.public_subnet1.id}"
   associate_public_ip_address = lookup(var.awsprops, "publicip")
+  #associate_public_ip_address = true
   key_name = lookup(var.awsprops, "keyname")
 
 
@@ -15,7 +17,7 @@ resource "aws_instance" "project-iac" {
     volume_type = "gp2"
   }
   tags = {
-    Name ="SERVER01"
+    Name ="SERVER-${count.index+1}"
     OS = "UBUNTU"
   }
 
@@ -23,6 +25,10 @@ resource "aws_instance" "project-iac" {
 }
 
 
-output "ec2instance" {
-  value = aws_instance.project-iac.public_ip
+# output "ec2instance" {
+#   value = [aws_instance.project-iac[count.index]].public_ip
+# }
+
+output "instance_ips" {
+  value = "aws_instance.project-iac.*.public_ip"
 }
